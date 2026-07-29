@@ -1,0 +1,39 @@
+!<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Code with Mahesh Chat</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    </head>
+    <body>
+        <h2>Welcome, <span id="username">{{username}}</span></h2>
+        <div class="container">
+            <div class="sidebar">
+                <div class="room-list">
+                    <h3>Rooms</h3>
+                    {% for room in rooms %}
+                    <div class="room-item" data-room="{{ room }}">
+                        {{ room }}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="user-list">
+                    <h3>Online Users</h3>
+                    <div id="active-users"></div>
+                </div>
+            </div>
+            <div class="main-chat">
+                <div id="chat"></div>
+                <div class="input-area">
+                    <input type="text" id="message" placeholder="Enter text here.." onkeypress="handleKeyPress(event)" />
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+        <script src="{{url_for('static', filename='chat.js')}}" async defer></script>
+    </body>
+</html>
